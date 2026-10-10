@@ -3,6 +3,7 @@ import { useState } from "react";
 
 
 
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -36,6 +37,12 @@ const App = () => {
     setNeutral(updatedNeutral);
   };
 
+
+  const total = good + neutral + bad;
+
+  const average = total > 0 ? (good - bad) / total : 0;
+  const positive = total > 0 ? (good / total) * 100 : 0;
+
     
   return (
     <div>
@@ -43,12 +50,20 @@ const App = () => {
       <button onClick={handelGoodFeeback}>good</button>
       <button onClick={handelNeutralFeeback}>neutral</button>
       <button onClick={handelBadFeeback}>bad</button>
+      
+      
       <h1>statistics</h1>
       good {good}
       <br />
       neutral {neutral}
       <br />
       bad {bad}
+      <br />
+      all {total}
+      <br />
+      average {average}
+      <br />
+      positive {positive} %
     </div>
   );
 };
